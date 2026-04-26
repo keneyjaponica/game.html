@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>10秒ピッタリチャレンジ</title>
+</head>
+<body>
+  <h2>10秒ピッタリで止めろ🔥</h2>
+
+  <button onclick="start()">スタート</button>
+  <button onclick="stop()">ストップ</button>
+
+  <p id="status">準備OK？</p>
+  <p id="result"></p>
+
+  <script>
+    let startTime;
+
+    function start() {
+      startTime = Date.now();
+      document.getElementById("status").innerText = "カウント中...";
+      document.getElementById("result").innerText = "";
+    }
+
+    function stop() {
+      const endTime = Date.now();
+      const diff = (endTime - startTime) / 1000;
+
+      const error = Math.abs(10 - diff).toFixed(2);
+
+      document.getElementById("status").innerText = 
+        "あなたのタイム: " + diff.toFixed(2) + "秒";
+
+      document.getElementById("result").innerText = 
+        "誤差: " + error + "秒";
+
+      if (error < 0.3) {
+        alert("神レベル🔥");
+      } else if (error < 1) {
+        alert("うまい！");
+      } else {
+        alert("まだまだ！");
+      }
+    }
+  </script>
+</body>
+</html>
